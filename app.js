@@ -4,6 +4,9 @@ const TIMER_MIN_SECONDS = 5;
 const TIMER_MAX_SECONDS = 60;
 const DEFAULT_TIMER_SECONDS = 60;
 const MAX_CHOICES = 4;
+const ASTEROID_BASE_SPEED = 58;
+const ASTEROID_SPEED_VARIANCE = 24;
+const ASTEROID_VERTICAL_DRIFT = 44;
 
 const SELECTORS = {
   setupScreen: "setupScreen",
@@ -279,7 +282,7 @@ function buildAsteroids(card) {
 
 function createAsteroid({ answer, size, placement }) {
   const button = document.createElement("button");
-  const speed = 96 + Math.random() * 42;
+  const speed = ASTEROID_BASE_SPEED + Math.random() * ASTEROID_SPEED_VARIANCE;
 
   button.type = "button";
   button.className = "asteroid";
@@ -295,7 +298,7 @@ function createAsteroid({ answer, size, placement }) {
     x: placement.x,
     y: placement.y,
     vx: -speed,
-    vy: (Math.random() - 0.5) * 74,
+    vy: (Math.random() - 0.5) * ASTEROID_VERTICAL_DRIFT,
     size,
     radius: size / 2,
   };
