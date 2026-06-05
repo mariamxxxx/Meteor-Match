@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Blast</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="stars" aria-hidden="true"></div>
+
+    <main class="app">
+      <section id="setupScreen" class="screen setup-screen active">
+        <div class="setup-panel">
+          <div class="setup-header">
+            <h1>Personal Blast</h1>
+            <p>
+              Paste pairs as question, newline, answer. Separate each pair with
+              a blank line.
+            </p>
+          </div>
+
+          <div class="input-grid">
+            <textarea
+              id="sourceInput"
+              spellcheck="false"
+              aria-label="Question and answer input"
+            >
+What is the capital of Egypt?
+Cairo
+
+What planet is known as the Red Planet?
+Mars
+
+What is 7 x 8?
+56
+
+What gas do plants absorb from the air?
+Carbon dioxide</textarea
+            >
+
+            <div class="controls">
+              <label class="slider-wrap" for="timeSlider">
+                <span class="slider-label">
+                  <span>Seconds per question</span>
+                  <span id="timeValue" class="slider-value">20 seconds</span>
+                </span>
+                <input id="timeSlider" type="range" step="1" />
+              </label>
+
+              <div class="button-row">
+                <button id="startButton" class="btn" type="button">
+                  Start Game
+                </button>
+              </div>
+            </div>
+
+            <div
+              id="setupError"
+              class="error"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen">
+        <div class="hud">
+          <div class="hud-item">
+            <div class="hud-label">Score</div>
+            <div id="scoreValue" class="hud-value">0</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-label">Question</div>
+            <div id="progressValue" class="hud-value">1 / 1</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-label">Timer</div>
+            <div id="timerValue" class="hud-value">60.0</div>
+          </div>
+
+          <div class="hud-item">
+            <div class="hud-label">Limit</div>
+            <div id="limitValue" class="hud-value">60s</div>
+          </div>
+
+          <div class="hud-item hud-action">
+            <button
+              id="pauseButton"
+              class="btn secondary pause-toggle"
+              type="button"
+            >
+              Pause
+            </button>
+          </div>
+        </div>
+
+        <div class="timer-bar" aria-hidden="true">
+          <div id="timerFill" class="timer-fill"></div>
+        </div>
+
+        <div class="question-panel">
+          <div class="question-label">Blast the matching answer</div>
+          <div id="questionText" class="question-text"></div>
+        </div>
+
+        <div id="pausePanel" class="pause-panel" aria-live="polite">
+          <div class="pause-copy">
+            <div class="pause-title">Paused</div>
+            <p>Adjust the question timer, then resume the round.</p>
+          </div>
+
+          <label class="slider-wrap" for="pauseTimeSlider">
+            <span class="slider-label">
+              <span>Seconds per question</span>
+              <span id="pauseTimeValue" class="slider-value">60 seconds</span>
+            </span>
+            <input id="pauseTimeSlider" type="range" step="1" />
+          </label>
+        </div>
+
+        <div id="field" class="field" aria-label="Asteroid answer field">
+          <div class="ship" aria-hidden="true"></div>
+        </div>
+
+        <div id="feedback" class="feedback" aria-live="polite"></div>
+      </section>
+
+      <section id="endScreen" class="screen end-screen">
+        <div class="end-panel">
+          <h2 id="endTitle">You won</h2>
+          <p id="endMessage">You cleared every question.</p>
+
+          <div class="end-stats">
+            <div class="stat-pill">Score: <strong id="endScore">0</strong></div>
+            <div class="stat-pill">
+              Cleared: <strong id="endCleared">0</strong>
+            </div>
+          </div>
+
+          <div class="button-row centered">
+            <button id="playAgainButton" class="btn" type="button">
+              Play Again
+            </button>
+            <button id="editButton" class="btn secondary" type="button">
+              Edit Input
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
