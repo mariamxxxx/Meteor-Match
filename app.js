@@ -173,7 +173,7 @@ function handleAnswer(answer, button) {
 
 function handleCorrectAnswer(button) {
   state.acceptingInput = false;
-  state.score += 1;
+  state.score += 4;
   state.timeRemaining = state.timeLimit;
   state.currentIndex += 1;
 
